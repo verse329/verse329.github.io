@@ -210,15 +210,36 @@
             color: #5a67d8;
         }
 
-        .article-footer {
-            border-top: 1px solid #f0f0f0;
-            margin-top: 80px;
-            padding: 40px 0;
-            text-align: center;
+        .article-links {
+            border-top: 1px solid #e0e0e0;
+            margin-top: 60px;
+            padding: 30px 0;
             font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            color: #666;
-            line-height: 1.6;
+        }
+
+        .article-links h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .links-grid a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 15px;
+            line-height: 1.4;
+            padding: 4px 0;
+        }
+
+        .links-grid a:hover {
+            text-decoration: underline;
         }
 
         .clearfix::after {
@@ -326,6 +347,16 @@
             <p class="cta-subtitle">Based on our analysis, this offers excellent value and performance</p>
             <a href="https://www.amazon.com/dp/B00TTD9BRC?tag=wenli202006-20" target="_blank" class="cta-button">View on Amazon</a>
         </section>
+
+        <footer class="article-links">
+            <h3>More Reviews</h3>
+            <div class="links-grid">
+                <a href="../posted/beauty-cosmetics-cerave-moisturizing-cream-body-and-face-.html">CeraVe Moisturizing Cream Review</a>
+                <a href="../posted/tools-automotive-dewalt-20v-max-cordless-drill-and-impact.html">DEWALT Cordless Tools Review</a>
+                <a href="../posted/home-kitchen-fellow-stagg-ekg-electric-gooseneck-kett.html">Fellow Coffee Kettle Review</a>
+                <a href="../../index.html">← Back to All Reviews</a>
+            </div>
+        </footer>
 
     </article>
 </body>
