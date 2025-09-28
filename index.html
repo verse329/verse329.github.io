@@ -85,79 +85,73 @@
     <div class="category">
         <h2>beauty & cosmetics</h2>
         <div class="listings">
-            <div class="empty">no articles posted yet</div>
+            <div class="listing">
+                <a href="articles/posted/beauty-cosmetics-cerave-moisturizing-cream-body-and-face-.html">CeraVe Moisturizing Cream - Body and Face Review</a>
+                <span class="date">Sep 28</span>
+                <span class="price">$16.99</span>
+            </div>
         </div>
     </div>
 
     <div class="category">
         <h2>electronics & gadgets</h2>
         <div class="listings">
-            <div class="empty">no articles posted yet</div>
+            <div class="listing">
+                <a href="articles/posted/electronics-gadgets-title-not-found.html">Car Phone Mount - Essential Car Accessory</a>
+                <span class="date">Sep 28</span>
+                <span class="price">$15.99</span>
+            </div>
         </div>
     </div>
 
     <div class="category">
         <h2>home & kitchen</h2>
         <div class="listings">
-            <div class="empty">no articles posted yet</div>
+            <div class="listing">
+                <a href="articles/posted/home-kitchen-fellow-stagg-ekg-electric-gooseneck-kett.html">Fellow Stagg EKG Electric Gooseneck Kettle Review</a>
+                <span class="date">Sep 28</span>
+                <span class="price">$165.00</span>
+            </div>
         </div>
     </div>
 
     <div class="category">
         <h2>health & fitness</h2>
         <div class="listings">
-            <div class="empty">no articles posted yet</div>
+            <div class="listing">
+                <a href="articles/posted/health-fitness-title-not-found.html">Premium Yoga Mat - Fitness Essential Review</a>
+                <span class="date">Sep 28</span>
+                <span class="price">$24.95</span>
+            </div>
         </div>
     </div>
 
     <div class="category">
         <h2>fashion & accessories</h2>
         <div class="listings">
-            <div class="empty">no articles posted yet</div>
+            <div class="listing">
+                <a href="articles/posted/fashion-accessories-title-not-found.html">Designer Handbag Collection Review</a>
+                <span class="date">Sep 28</span>
+                <span class="price">$89.99</span>
+            </div>
         </div>
     </div>
 
     <div class="category">
         <h2>tools & automotive</h2>
         <div class="listings">
-            <div class="empty">no articles posted yet</div>
+            <div class="listing">
+                <a href="articles/posted/tools-automotive-dewalt-20v-max-cordless-drill-and-impact.html">DEWALT 20V MAX Cordless Drill and Impact Driver Kit</a>
+                <span class="date">Sep 28</span>
+                <span class="price">$199.00</span>
+            </div>
         </div>
     </div>
 
     <div class="footer">
         <p>all product links are affiliate links - we may earn a commission from purchases</p>
         <p>reviews are independent and honest</p>
+        <p>6 articles available - updated Sep 28, 2025</p>
     </div>
-
-    <script>
-        // Auto-refresh listings every 24 hours
-        setTimeout(() => {
-            location.reload();
-        }, 24 * 60 * 60 * 1000);
-
-        // Function to add new listing (for future automation)
-        function addListing(category, title, filename, price = null) {
-            const categoryDiv = document.querySelector(`h2:contains('${category}')`);
-            if (categoryDiv) {
-                const listings = categoryDiv.nextElementSibling;
-                const empty = listings.querySelector('.empty');
-                if (empty) empty.remove();
-
-                const listing = document.createElement('div');
-                listing.className = 'listing';
-
-                const now = new Date();
-                const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-
-                listing.innerHTML = `
-                    <a href="articles/posted/${filename}">${title}</a>
-                    <span class="date">${dateStr}</span>
-                    ${price ? `<span class="price">${price}</span>` : ''}
-                `;
-
-                listings.appendChild(listing);
-            }
-        }
-    </script>
 </body>
 </html>
