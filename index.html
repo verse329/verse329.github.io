@@ -3,69 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How Laura Geller Transformed My Beauty Routine</title>
+    <title>Product Reviews & Deals</title>
     <style>
         body {
-            font-family: Georgia, serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
+            font-family: "Times New Roman", serif;
+            margin: 0;
             padding: 20px;
-            background: #fafafa;
+            background: #fff;
+            color: #000;
         }
-        .container {
-            background: white;
-            padding: 40px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        .header {
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
-        h1 {
-            color: #333;
-            text-align: center;
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+            font-weight: normal;
+        }
+        .header p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .category {
             margin-bottom: 30px;
         }
-        p {
-            margin-bottom: 20px;
-            text-align: justify;
+        .category h2 {
+            font-size: 18px;
+            color: #00f;
+            margin: 0 0 10px 0;
+            text-decoration: underline;
+            font-weight: normal;
         }
-        .cta-button {
-            display: block;
-            background: #ff6b35;
-            color: white;
-            padding: 15px 30px;
+        .listings {
+            margin-left: 20px;
+        }
+        .listing {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .listing a {
+            color: #00f;
             text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-            margin: 30px auto;
-            max-width: 200px;
         }
-        .product-image {
-            text-align: center;
-            margin: 30px 0;
+        .listing a:hover {
+            text-decoration: underline;
         }
-        .product-image img {
-            max-width: 400px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .listing .date {
+            color: #666;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .listing .price {
+            color: #008000;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .footer {
+            border-top: 1px solid #000;
+            margin-top: 40px;
+            padding-top: 10px;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+        .empty {
+            font-style: italic;
+            color: #999;
+            margin-left: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>How Laura Geller Transformed My Beauty Routine</h1>
-
-        <p>This is a comprehensive review of the Laura Geller makeup brushes that transformed my beauty routine forever. When I first discovered these professional-grade brushes, I was skeptical about whether they would live up to the hype surrounding this beloved beauty brand.</p>
-
-        <div class="product-image">
-            <img src="https://images-na.ssl-images-amazon.com/images/I/71FbDiQ+trL._AC_SL1500_.jpg" alt="Laura Geller Makeup Brushes">
-        </div>
-
-        <p>The packaging immediately caught my attention with its sleek, sophisticated design that screams luxury without being ostentatious. Upon opening the set, I was impressed by the quality craftsmanship evident in every detail, from the perfectly balanced handles to the incredibly soft vegan bristles.</p>
-
-        <p>Using these brushes transformed my daily makeup application from a chore into a genuine pleasure. The Face Powder Brush glides effortlessly across the skin, distributing product evenly without any streaking or patchiness.</p>
-
-        <p>For anyone serious about their makeup game, this brush set represents exceptional value. The professional results you can achieve at home rival those of high-end makeup artists, making this investment well worth every penny.</p>
-
-        <a href="https://amazon.com/test-brushes" class="cta-button" target="_blank">Check it out on Amazon</a>
+    <div class="header">
+        <h1>product reviews & deals</h1>
+        <p>find the best products and deals - updated daily</p>
     </div>
+
+    <div class="category">
+        <h2>beauty & cosmetics</h2>
+        <div class="listings">
+            <div class="empty">no articles posted yet</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>electronics & gadgets</h2>
+        <div class="listings">
+            <div class="empty">no articles posted yet</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>home & kitchen</h2>
+        <div class="listings">
+            <div class="empty">no articles posted yet</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>health & fitness</h2>
+        <div class="listings">
+            <div class="empty">no articles posted yet</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>fashion & accessories</h2>
+        <div class="listings">
+            <div class="empty">no articles posted yet</div>
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>tools & automotive</h2>
+        <div class="listings">
+            <div class="empty">no articles posted yet</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>all product links are affiliate links - we may earn a commission from purchases</p>
+        <p>reviews are independent and honest</p>
+    </div>
+
+    <script>
+        // Auto-refresh listings every 24 hours
+        setTimeout(() => {
+            location.reload();
+        }, 24 * 60 * 60 * 1000);
+
+        // Function to add new listing (for future automation)
+        function addListing(category, title, filename, price = null) {
+            const categoryDiv = document.querySelector(`h2:contains('${category}')`);
+            if (categoryDiv) {
+                const listings = categoryDiv.nextElementSibling;
+                const empty = listings.querySelector('.empty');
+                if (empty) empty.remove();
+
+                const listing = document.createElement('div');
+                listing.className = 'listing';
+
+                const now = new Date();
+                const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+                listing.innerHTML = `
+                    <a href="articles/posted/${filename}">${title}</a>
+                    <span class="date">${dateStr}</span>
+                    ${price ? `<span class="price">${price}</span>` : ''}
+                `;
+
+                listings.appendChild(listing);
+            }
+        }
+    </script>
 </body>
 </html>
