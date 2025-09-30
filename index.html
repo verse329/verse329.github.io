@@ -83,7 +83,6 @@
     </div>
 
     <div id="articles-container">
-        <!-- Articles will be dynamically loaded here -->
         <p style="text-align: center; color: #999; padding: 40px;">Loading articles...</p>
     </div>
 
@@ -94,70 +93,56 @@
     </div>
 
     <script>
-        // Define all available articles
-        const articles = [
-            {
-                file: 'beauty-cosmetics-cerave-moisturizing-cream-body-and-face-.html',
-                category: 'beauty & cosmetics',
-                title: 'CeraVe Moisturizing Cream - Body and Face Review',
-                date: 'Sep 30'
-            },
-            {
-                file: 'electronics-gadgets-apple-airpods-pro-2nd-generation-review.html',
-                category: 'electronics & gadgets',
-                title: 'Apple AirPods Pro (2nd Generation) Review',
-                date: 'Sep 30'
-            },
-            {
-                file: 'home-kitchen-fellow-stagg-ekg-electric-gooseneck-kett.html',
-                category: 'home & kitchen',
-                title: 'Fellow Stagg EKG Electric Gooseneck Kettle Review',
-                date: 'Sep 30'
-            },
-            {
-                file: 'tools-automotive-dewalt-20v-max-cordless-drill-and-impact.html',
-                category: 'tools & automotive',
-                title: 'DEWALT 20V MAX Cordless Drill and Impact Driver Kit',
-                date: 'Sep 30'
-            }
-        ];
+        // Load articles dynamically from files
+        async function loadArticles() {
+            try {
+                const response = await fetch('articles/articles.json');
+                const articles = await response.json();
 
-        // Group articles by category
-        const categorized = {};
-        articles.forEach(article => {
-            if (!categorized[article.category]) {
-                categorized[article.category] = [];
-            }
-            categorized[article.category].push(article);
-        });
+                // Group articles by category
+                const categorized = {};
+                articles.forEach(article => {
+                    if (!categorized[article.category]) {
+                        categorized[article.category] = [];
+                    }
+                    categorized[article.category].push(article);
+                });
 
-        // Build HTML
-        let html = '';
-        for (const [category, items] of Object.entries(categorized)) {
-            html += `
-                <div class="category">
-                    <h2>${category}</h2>
-                    <div class="listings">
-            `;
+                // Build HTML
+                let html = '';
+                for (const [category, items] of Object.entries(categorized)) {
+                    html += `
+                        <div class="category">
+                            <h2>${category}</h2>
+                            <div class="listings">
+                    `;
 
-            items.forEach(item => {
-                html += `
-                        <div class="listing">
-                            <a href="articles/posted/${item.file}">${item.title}</a>
-                            <span class="date">${item.date}</span>
+                    items.forEach(item => {
+                        html += `
+                                <div class="listing">
+                                    <a href="articles/posted/${item.file}">${item.title}</a>
+                                    <span class="date">${item.date}</span>
+                                </div>
+                        `;
+                    });
+
+                    html += `
+                            </div>
                         </div>
-                `;
-            });
+                    `;
+                }
 
-            html += `
-                    </div>
-                </div>
-            `;
+                // Insert into page
+                document.getElementById('articles-container').innerHTML = html || '<p style="text-align: center; color: #999;">No articles yet. Check back soon!</p>';
+                document.getElementById('article-count').textContent = `${articles.length} articles available - updated ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+            } catch (error) {
+                console.error('Error loading articles:', error);
+                document.getElementById('articles-container').innerHTML = '<p style="text-align: center; color: #999;">Error loading articles. Please refresh.</p>';
+            }
         }
 
-        // Insert into page
-        document.getElementById('articles-container').innerHTML = html;
-        document.getElementById('article-count').textContent = `${articles.length} articles available - updated ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+        // Load on page load
+        loadArticles();
     </script>
 </body>
 </html>
