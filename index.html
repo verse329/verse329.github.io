@@ -82,76 +82,82 @@
         <p>find the best products and deals - updated daily</p>
     </div>
 
-    <div class="category">
-        <h2>beauty & cosmetics</h2>
-        <div class="listings">
-            <div class="listing">
-                <a href="articles/posted/beauty-cosmetics-cerave-moisturizing-cream-body-and-face-.html">CeraVe Moisturizing Cream - Body and Face Review</a>
-                <span class="date">Sep 28</span>
-                <span class="price">$16.99</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="category">
-        <h2>electronics & gadgets</h2>
-        <div class="listings">
-            <div class="listing">
-                <a href="articles/posted/electronics-gadgets-title-not-found.html">Car Phone Mount - Essential Car Accessory</a>
-                <span class="date">Sep 28</span>
-                <span class="price">$15.99</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="category">
-        <h2>home & kitchen</h2>
-        <div class="listings">
-            <div class="listing">
-                <a href="articles/posted/home-kitchen-fellow-stagg-ekg-electric-gooseneck-kett.html">Fellow Stagg EKG Electric Gooseneck Kettle Review</a>
-                <span class="date">Sep 28</span>
-                <span class="price">$165.00</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="category">
-        <h2>health & fitness</h2>
-        <div class="listings">
-            <div class="listing">
-                <a href="articles/posted/health-fitness-title-not-found.html">Premium Yoga Mat - Fitness Essential Review</a>
-                <span class="date">Sep 28</span>
-                <span class="price">$24.95</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="category">
-        <h2>fashion & accessories</h2>
-        <div class="listings">
-            <div class="listing">
-                <a href="articles/posted/fashion-accessories-title-not-found.html">Designer Handbag Collection Review</a>
-                <span class="date">Sep 28</span>
-                <span class="price">$89.99</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="category">
-        <h2>tools & automotive</h2>
-        <div class="listings">
-            <div class="listing">
-                <a href="articles/posted/tools-automotive-dewalt-20v-max-cordless-drill-and-impact.html">DEWALT 20V MAX Cordless Drill and Impact Driver Kit</a>
-                <span class="date">Sep 28</span>
-                <span class="price">$199.00</span>
-            </div>
-        </div>
+    <div id="articles-container">
+        <!-- Articles will be dynamically loaded here -->
+        <p style="text-align: center; color: #999; padding: 40px;">Loading articles...</p>
     </div>
 
     <div class="footer">
         <p>all product links are affiliate links - we may earn a commission from purchases</p>
         <p>reviews are independent and honest</p>
-        <p>6 articles available - updated Sep 28, 2025</p>
+        <p id="article-count">Loading...</p>
     </div>
+
+    <script>
+        // Define all available articles
+        const articles = [
+            {
+                file: 'beauty-cosmetics-cerave-moisturizing-cream-body-and-face-.html',
+                category: 'beauty & cosmetics',
+                title: 'CeraVe Moisturizing Cream - Body and Face Review',
+                date: 'Sep 30'
+            },
+            {
+                file: 'electronics-gadgets-apple-airpods-pro-2nd-generation-review.html',
+                category: 'electronics & gadgets',
+                title: 'Apple AirPods Pro (2nd Generation) Review',
+                date: 'Sep 30'
+            },
+            {
+                file: 'home-kitchen-fellow-stagg-ekg-electric-gooseneck-kett.html',
+                category: 'home & kitchen',
+                title: 'Fellow Stagg EKG Electric Gooseneck Kettle Review',
+                date: 'Sep 30'
+            },
+            {
+                file: 'tools-automotive-dewalt-20v-max-cordless-drill-and-impact.html',
+                category: 'tools & automotive',
+                title: 'DEWALT 20V MAX Cordless Drill and Impact Driver Kit',
+                date: 'Sep 30'
+            }
+        ];
+
+        // Group articles by category
+        const categorized = {};
+        articles.forEach(article => {
+            if (!categorized[article.category]) {
+                categorized[article.category] = [];
+            }
+            categorized[article.category].push(article);
+        });
+
+        // Build HTML
+        let html = '';
+        for (const [category, items] of Object.entries(categorized)) {
+            html += `
+                <div class="category">
+                    <h2>${category}</h2>
+                    <div class="listings">
+            `;
+
+            items.forEach(item => {
+                html += `
+                        <div class="listing">
+                            <a href="articles/posted/${item.file}">${item.title}</a>
+                            <span class="date">${item.date}</span>
+                        </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                </div>
+            `;
+        }
+
+        // Insert into page
+        document.getElementById('articles-container').innerHTML = html;
+        document.getElementById('article-count').textContent = `${articles.length} articles available - updated ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+    </script>
 </body>
 </html>
