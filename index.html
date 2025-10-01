@@ -93,15 +93,33 @@
     </div>
 
     <script>
-        // Load articles dynamically from files
-        async function loadArticles() {
-            try {
-                const response = await fetch('articles/articles.json');
-                const articles = await response.json();
+        // Articles data - AUTO-UPDATED by generate script
+        const articlesData = [{
+                    "file": "knife-set-15-pcs-kitchen-knife-set-with-block-self-sharpening-dishwasher-safe-6-.html",
+                    "category": "beauty",
+                    "title": "Knife Set, 15 Pcs Kitchen Knife Set with... - Professional Review",
+                    "date": "Sep 30"
+          },
+          {
+                    "file": "orgain-organic-vegan-protein-powder-creamy-chocolate-fudge-21g-plant-protein-6g-.html",
+                    "category": "beauty",
+                    "title": "Orgain Organic Vegan Protein Powder, Creamy Chocolate Fudge... - Professional Review",
+                    "date": "Sep 30"
+          },
+          {
+                    "file": "vatan-mens-belt-leather-ratchet-belt-for-men-dress-casual-every-day-with-adjusta.html",
+                    "category": "beauty",
+                    "title": "VATAN Men's Belt Leather Ratchet Belt for Men... - Professional Review",
+                    "date": "Sep 30"
+          }
+        ];
 
+        // Load articles from inlined data
+        function loadArticles() {
+            try {
                 // Group articles by category
                 const categorized = {};
-                articles.forEach(article => {
+                articlesData.forEach(article => {
                     if (!categorized[article.category]) {
                         categorized[article.category] = [];
                     }
@@ -134,7 +152,7 @@
 
                 // Insert into page
                 document.getElementById('articles-container').innerHTML = html || '<p style="text-align: center; color: #999;">No articles yet. Check back soon!</p>';
-                document.getElementById('article-count').textContent = `${articles.length} articles available - updated ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+                document.getElementById('article-count').textContent = `${articlesData.length} articles available - updated ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
             } catch (error) {
                 console.error('Error loading articles:', error);
                 document.getElementById('articles-container').innerHTML = '<p style="text-align: center; color: #999;">Error loading articles. Please refresh.</p>';
